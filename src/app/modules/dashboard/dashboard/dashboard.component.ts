@@ -46,7 +46,6 @@ export class DashboardComponent implements OnInit {
   }
 
   searchGameFilter(value): gameModel[] {
-    console.log("isde"+value)
     const filterValue = value.toLowerCase();
 
     return this.gameList.filter(game => game.title.toLowerCase().includes(filterValue));
@@ -81,17 +80,14 @@ export class DashboardComponent implements OnInit {
       });
       this.selectedTab = this.gameCategories[0];
 
-      console.log("JSON---"+this.gameList.length)
     },err => {
       console.log("err");
     })
   }
 
   getSelectedGame(gameObj){
-    console.log("insideeeee selee"+JSON.stringify(gameObj));
     this.selectedTab = gameObj.platform;
     this.selectedGameTitle = gameObj.title;
-    console.log(this.selectedTab)
   }
 
   getOptionText(game){
