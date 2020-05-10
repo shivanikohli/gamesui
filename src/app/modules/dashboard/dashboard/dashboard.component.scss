@@ -1,0 +1,91 @@
+@import "src/assets/scss/variables";
+
+.game-card{
+    // border-bottom: 2px solid $primary-orange;
+    border: 2px solid $primary-grey;
+    margin-bottom: 1.5rem;
+    border-radius: 10px;
+}
+.game-card-footer{
+    border-top: 1px solid $primary-grey;
+    padding:0.5rem;
+}
+.game-card-content{
+    padding:0.5rem;
+}
+
+.game-image-card{
+    width:100%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.game-title{
+    font-size: $font-md;
+    font-weight: bold;
+}
+
+.game-genre{
+    font-size:$font-sm;
+}
+
+.star-icon{
+    color:$primary-yellow;
+}
+
+.game-score{
+    font-size:$font-lg;
+    color:$primary-orange;
+    font-weight: bold;
+}
+
+.game-name,.game-points{
+    font-size: $font-xs;
+    font-family: 'Bold' !important;
+}
+
+.game-points-desc{
+    font-size: $font-sm;
+}
+
+.primary-button{
+    border:1px solid $primary-orange;
+    background-color: $primary-orange;
+    color: $primary-white;
+    font-size: $font-sm;
+    height: 2rem;
+}
+
+.secondary-button{
+    border: 1px solid $primary-orange;
+    background-color: $primary-white;
+    color: $primary-orange;
+    font-size: $font-sm;
+    height: 2rem;
+}
+
+.filter-button{
+    border:1px solid $primary-lightgrey;
+    background-color: $primary-lightgrey;
+    color: $primary-black;
+    font-size:$font-sm;
+    height: 2.5rem;
+    margin-bottom:1rem;
+    cursor: pointer;
+}
+
+.filter-button.active{
+    border:1px solid $primary-orange;
+    background-color: $primary-orange;
+    color:$primary-white;
+}
+
+.sortOptions{
+    background: $secondary-lightgrey;
+    padding: 1rem;
+}
+
+.game-empty{
+    font-size:$font-md;
+}
+                          

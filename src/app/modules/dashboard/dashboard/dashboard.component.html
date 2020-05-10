@@ -1,0 +1,102 @@
+<div fxLayout="column" fxLayoutGap="2rem">
+<div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10%">
+    <div fxFlex="60%">
+        <form class="example-form">
+            <mat-form-field appearance="outline" class="fullWidth">
+                <input matInput
+                       #matInputSearch
+                       placeholder="Search(by name)"
+                       name="gameCtrl"
+                       [matAutocomplete]="auto"
+                       [formControl]="gameCtrl">
+                       <button mat-button matPrefix mat-icon-button><mat-icon svgIcon="search-web"></mat-icon></button>
+                       <button mat-button *ngIf="matInputSearch.value" matSuffix mat-icon-button (click)="matInputSearch.value='';selectedGameTitle=''">
+                        <mat-icon svgIcon="close"></mat-icon>
+                      </button>
+                <mat-autocomplete (optionSelected)="getSelectedGame($event.option.value)" #auto="matAutocomplete" [displayWith]="getOptionText">
+                  <mat-option  *ngFor="let game of filteredGames | async" [value]="game">
+                    <span>{{game.title}}</span> |
+                    <small>Platform: {{game.platform}}</small>
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+          </form>
+    </div>
+    <div fxFlex="30%">
+        <button (click)="showSort()" class="fullWidth" mat-raised-button color="primary">
+            <mat-icon svgIcon="filter-variant"></mat-icon>
+            Sort By
+        </button>
+        <div class="sortOptions" *ngIf="sortOptionsShow">
+            <mat-radio-group fxLayout="column" fxLayoutGap="0.5rem" (change)="sortRadioChange($event)"
+            [(ngModel)]="sortByOption">
+                <mat-radio-button value="dsc">
+                    Score high to low
+                </mat-radio-button>
+                <mat-radio-button value="asc">
+                    Score low to high
+                </mat-radio-button>
+            </mat-radio-group>
+        </div>
+    </div>
+</div>
+
+<div class="align" fxLayout="row wrap" fxLayoutGap="1rem" fxLayoutGap.xs="5%">
+    <ng-container *ngFor="let category of gameCategories">
+        <button fxFlex="15%" fxFlex.xs="45%" [ngClass]="(selectedTab == category)?'active':''" class="fullWidth filter-button" (click)="onTabChange(category)">{{category}}</button>
+    </ng-container>
+</div>
+<div class="align" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-between" fxLayoutAlign.xs="center">
+    <ng-container *ngFor="let game of gameList;let i=index" >
+        <div *ngIf="selectedGameTitle?game.platform == selectedTab && game.title == selectedGameTitle:game.platform == selectedTab" class="game-card" fxLayout="column" fxFlex="30%" fxFlex.sm="40%" fxLayoutGap="1rem">
+            <!-- <img (click)="openModal(i)" class="game-image-card" fxLayoutAlign="center" src="{{game.imageUrl}}"/> -->
+            <!-- <div>
+                <div class="game-name">{{game.title}}</div>
+                <div><span class="game-points">{{game.score}}</span><span class="game-points-desc"> points</span></div>
+            </div> -->
+            <div class="game-card-content" fxLayout="row" fxLayoutGap="0.5rem">
+                <div fxFlex="30%">
+                    <img class="game-image-card" fxLayoutAlign="center" src="./assets/images/game.png"/>
+                </div>
+                <div fxFlex="60%">
+                    <div><span class="game-title">{{game.title}}</span></div>
+                </div>
+                <div *ngIf="game.editors_choice === 'Y'" fxFlex="10%" fxLayout="row" fxLayoutAlign="end">
+                    <mat-icon class="star-icon" svgIcon="star"></mat-icon>
+                </div>
+            </div>
+            <div class="game-card-footer" fxLayout="row" fxLayoutAlign="space-between end" fxLayoutGap="0.5rem">
+                <div>
+                    <div><span class="game-genre">Genre: </span><span class="game-genre">{{game.genre}}</span></div>
+                </div>
+                <div>
+                    <div><span class="game-score">{{game.score}}</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div *ngIf="selectedGameTitle?game.platform == selectedTab && game.title == selectedGameTitle:game.platform == selectedTab" class="game-card" fxLayout="column" fxFlex="30%" fxLayoutGap="1rem">
+            <img (click)="openModal(i)" class="game-image-card" fxLayoutAlign="center" src="{{game.imageUrl}}"/>
+            <div>
+                <div class="game-name">{{game.title}}</div>
+                <div><span class="game-points">{{game.score}}</span><span class="game-points-desc"> points</span></div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="0.5rem">
+                <div fxFlex="38%" fxFlex.lt-md="50%">
+                    <button (click)="addToCart(i)" class="fullWidth secondary-button">Add to Cart</button>
+                </div>
+                <div fxFlex="38%" fxFlex.lt-md="50%">
+                    <button (click)="buyNow(i)" class="fullWidth primary-button">Buy Now</button>
+                </div>
+            </div>
+            <div></div>
+        </div> -->
+    </ng-container>
+    <!-- Align all items to left -->
+    <div *ngIf="gameList.length > 0" fxLayout="column" fxFlex="30%" fxFlex.sm="40%"></div>
+</div>
+
+<div fxLayout="row" fxLayoutAlign="center" *ngIf="gameList.length == 0">
+    <div class="game-empty">No games found!</div>
+</div>
+</div>

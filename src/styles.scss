@@ -1,1 +1,44 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import "./assets/scss/variables";
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+html,body{
+    min-height: calc(100% - 1em);
+    height:calc(100% - 1em);
+}
+
+body{
+    margin:0;
+}
+
+mat-icon{
+    cursor: pointer;
+}
+
+.fullWidth{
+    width: 100%;
+}
+
+#footerDivider::before{
+    border-bottom: 1px solid $secondary-grey;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    content: "";
+}
+
+.paddingAll{
+    padding:2rem;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline-thick {
+    color:$primary-blue;
+}
+.mat-form-field{
+    font-size: $font-sm;
+    height: 3rem;
+}
+.mat-raised-button{
+    height: 3rem;
+}
+
