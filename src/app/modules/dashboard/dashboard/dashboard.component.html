@@ -49,11 +49,6 @@
 <div class="align" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-between" fxLayoutAlign.xs="center">
     <ng-container *ngFor="let game of gameList;let i=index" >
         <div *ngIf="selectedGameTitle?game.platform == selectedTab && game.title == selectedGameTitle:game.platform == selectedTab" class="game-card" fxLayout="column" fxFlex="30%" fxFlex.sm="40%" fxLayoutGap="1rem">
-            <!-- <img (click)="openModal(i)" class="game-image-card" fxLayoutAlign="center" src="{{game.imageUrl}}"/> -->
-            <!-- <div>
-                <div class="game-name">{{game.title}}</div>
-                <div><span class="game-points">{{game.score}}</span><span class="game-points-desc"> points</span></div>
-            </div> -->
             <div class="game-card-content" fxLayout="row" fxLayoutGap="0.5rem">
                 <div fxFlex="30%">
                     <img class="game-image-card" fxLayoutAlign="center" src="./assets/images/game.png"/>
@@ -74,29 +69,12 @@
                 </div>
             </div>
         </div>
-
-        <!-- <div *ngIf="selectedGameTitle?game.platform == selectedTab && game.title == selectedGameTitle:game.platform == selectedTab" class="game-card" fxLayout="column" fxFlex="30%" fxLayoutGap="1rem">
-            <img (click)="openModal(i)" class="game-image-card" fxLayoutAlign="center" src="{{game.imageUrl}}"/>
-            <div>
-                <div class="game-name">{{game.title}}</div>
-                <div><span class="game-points">{{game.score}}</span><span class="game-points-desc"> points</span></div>
-            </div>
-            <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="0.5rem">
-                <div fxFlex="38%" fxFlex.lt-md="50%">
-                    <button (click)="addToCart(i)" class="fullWidth secondary-button">Add to Cart</button>
-                </div>
-                <div fxFlex="38%" fxFlex.lt-md="50%">
-                    <button (click)="buyNow(i)" class="fullWidth primary-button">Buy Now</button>
-                </div>
-            </div>
-            <div></div>
-        </div> -->
     </ng-container>
-    <!-- Align all items to left -->
+    <!-- Align all items to left for space-between-->
     <div *ngIf="gameList.length > 0" fxLayout="column" fxFlex="30%" fxFlex.sm="40%"></div>
 </div>
 
-<div fxLayout="row" fxLayoutAlign="center" *ngIf="gameList.length == 0">
+<div fxLayout="row" fxLayoutAlign="center" *ngIf="!loading && gameList.length == 0">
     <div class="game-empty">No games found!</div>
 </div>
 </div>

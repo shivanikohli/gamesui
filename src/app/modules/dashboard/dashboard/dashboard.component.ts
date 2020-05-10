@@ -3,14 +3,8 @@ import { GameService } from '@core/services/game.service';
 import { FormControl } from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, filter, debounceTime, distinctUntilChanged} from 'rxjs/operators';
+import { gameModel } from '@model/game.model';
 
-export interface gameModel{
-  title:string,
-  platform:string,
-  score:number,
-  genre:string,
-  editors_choice:string
-}
 
 @Component({
   selector: 'app-dashboard',
@@ -26,6 +20,7 @@ export class DashboardComponent implements OnInit {
   sortOptionsShow:boolean = false;
   gameCtrl = new FormControl();
   filteredGames:Observable<gameModel[]>;
+  loading:boolean;
 
   constructor(private _gameapi:GameService) { 
    
@@ -74,7 +69,9 @@ export class DashboardComponent implements OnInit {
   }
 
   getGameList(){
+    this.loading = true;
     this._gameapi.getAllGames().subscribe((data:any)=>{
+      this.loading=false;
       this.gameList = data.filter(obj => this.isGameObj(obj));
       this.gameList.forEach(gameObj => {
         let index = this.gameCategories.includes(gameObj.platform);
