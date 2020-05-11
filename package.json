@@ -22,6 +22,7 @@
     "@angular/platform-browser": "~8.2.14",
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@mdi/angular-material": "^4.9.95",
+    "ngx-spinner": "^8.1.0",
     "@mdi/font": "^4.9.95",
     "@angular/router": "~8.2.14",
     "rxjs": "~6.4.0",
